@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web_n8nftssvelte:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: .
+    networks:
+      - nginx-proxy
+    environment:
+      - VIRTUAL_PORT=YOURPORT
+      - VIRTUAL_HOST=n8-nfts-svelte.DOMAIN.com
+      - LETSENCRYPT_HOST=n8-nfts-svelte.DOMAIN.com
+      - LETSENCRYPT_EMAIL=EMAIL@gmail.com
+    volumes:
+      - /n8-nfts-svelte/pb:/pb
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy
